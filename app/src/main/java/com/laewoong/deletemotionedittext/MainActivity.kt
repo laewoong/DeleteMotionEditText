@@ -1,25 +1,20 @@
-package com.laewoong.deletemotionedittext;
+package com.laewoong.deletemotionedittext
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
+import android.os.Bundle
+import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
+import com.laewoong.deletemotionedittext.databinding.ActivityMainBinding
 
-public class MainActivity extends AppCompatActivity {
+class MainActivity : AppCompatActivity() {
 
-    DeleteMotionEditText editText;
+    private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        editText = (DeleteMotionEditText)findViewById(R.id.edittext_delete_motion);
-        editText.setOnEndDeleteMotionListener(new DeleteMotionEditText.OnEndDeleteMotionListener() {
-            @Override
-            public void onEndDeleteMotion() {
-                Log.i("fff", "Called End Motion Callback");
-            }
-        });
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(binding.root)
+
+        binding.edittextDeleteMotion.setOnEndDeleteMotionListener {
+            Log.i(MainActivity::class.simpleName, "Called End Motion Callback")
+        }
     }
 }
